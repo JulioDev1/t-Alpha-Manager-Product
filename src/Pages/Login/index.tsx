@@ -1,14 +1,23 @@
 import { Button, TextInput } from "@mantine/core";
 import { ChangeEvent, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { LoginDto } from "../../Model/LoginDto";
 import { Authentication } from "../../services/Authentication/Authentication";
+import { setToken } from "../../store/authSlice";
 
 export function Login() {
   const [value, setValue] = useState<LoginDto>({
     taxNumber: "",
     password: "",
   });
+  const dispatch = useDispatch();
+  const token = useSelector((state: any) => state.authToken?.token);
+  const navigate = useNavigate();
 
+  if (token) {
+    navigate("/dashboard");
+  }
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
 
@@ -17,12 +26,17 @@ export function Login() {
       return data;
     });
   }
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(value);
     const response = await Authentication(value);
-    return response;
+    if (response.data.data.token) {
+      localStorage.setItem("token", response.data.token);
+      dispatch(setToken(response.data.data.token));
+      navigate("/dashboard");
+    }
   }
+  console.log("ha tokens" + token);
   return (
     <form
       className="flex flex-col gap-2 justify-center max-w-full"
