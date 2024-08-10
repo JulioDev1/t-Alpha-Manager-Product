@@ -1,17 +1,16 @@
 import { Button, TextInput } from "@mantine/core";
 import { ChangeEvent, useState } from "react";
 import { CreateUserDto } from "../../Model/CreateUserDto";
+import { RegisterForm } from "../../services/Authentication/Authentication";
 
 export function Register() {
   const [value, setValue] = useState<CreateUserDto>({
-    mail: "",
     name: "",
-    password: "",
-    phone: "",
     taxNumber: "",
+    mail: "",
+    phone: "",
+    password: "",
   });
-
-  console.log(value);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
@@ -22,9 +21,18 @@ export function Register() {
     });
   }
 
-  console.log(value);
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(value);
+    const response = await RegisterForm(value);
+    console.log(response);
+    return response;
+  };
   return (
-    <form className="flex flex-col gap-2 justify-center max-w-full">
+    <form
+      className="flex flex-col gap-2 justify-center max-w-full"
+      onSubmit={handleSubmit}
+    >
       <TextInput
         className="flex flex-col gap-2 w-80"
         classNames={{
@@ -111,7 +119,7 @@ export function Register() {
         autoComplete="nope"
       />
 
-      <Button className="font-bold" color="indigo">
+      <Button type="submit" className="font-bold" color="indigo">
         Login
       </Button>
       <span className="text-zinc-100 font-light">
