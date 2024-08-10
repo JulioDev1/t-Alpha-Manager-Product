@@ -21,11 +21,14 @@ export const getAllProducts = async (): Promise<
   AxiosResponse<any, any> | undefined
 > => {
   try {
-    const response = await api().get("/api/products/get-all-products", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
+    const response = await api().get<{ data: { products: ProductDto } }>(
+      "/api/products/get-all-products",
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
 
     return response;
   } catch (err) {
