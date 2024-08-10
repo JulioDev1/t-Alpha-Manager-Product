@@ -111,6 +111,7 @@ export function Register() {
         value={value.password}
         name="password"
         label="Password"
+        type="password"
         placeholder="digit your password"
         required
         mt="md"

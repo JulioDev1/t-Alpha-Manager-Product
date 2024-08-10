@@ -1,6 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { Dashboard } from "./Pages/Dashboard";
 import { Login } from "./Pages/Login";
+import ProductList from "./Pages/ProductList";
 import { Register } from "./Pages/Register";
+import RegisterProduct from "./Pages/RegisterProduct";
 import ProtectedRoutes from "./utils/ProtectedRouters";
 const router = createBrowserRouter([
   { path: "/", element: <Login /> },
@@ -10,7 +13,29 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <h1>Dashboard</h1>,
+        element: (
+          <Dashboard>
+            <Outlet />
+          </Dashboard>
+        ),
+        children: [
+          {
+            path: "/dashboard",
+            element: <RegisterProduct />,
+          },
+          {
+            path: "/dashboard/productList",
+            element: <ProductList />,
+          },
+        ],
+      },
+      {
+        path: "/dashboard/productList",
+        element: [
+          <Dashboard>
+            <Outlet />
+          </Dashboard>,
+        ],
       },
     ],
   },

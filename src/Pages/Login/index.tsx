@@ -30,13 +30,16 @@ export function Login() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const response = await Authentication(value);
-    if (response.data.data.token) {
-      localStorage.setItem("token", response.data.token);
-      dispatch(setToken(response.data.data.token));
-      navigate("/dashboard");
+    if (response == undefined) {
+      alert("Invalid credentials");
+      return;
     }
+
+    localStorage.setItem("token", response.data.data.token);
+    dispatch(setToken(response.data.data.token));
+    navigate("/dashboard");
   }
-  console.log("ha tokens" + token);
+
   return (
     <form
       className="flex flex-col gap-2 justify-center max-w-full"
@@ -72,6 +75,7 @@ export function Login() {
         value={value.password}
         required
         mt="md"
+        type="password"
         color="gray"
         radius="md"
         autoComplete="nope"
