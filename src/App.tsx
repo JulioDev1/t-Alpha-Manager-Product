@@ -2,6 +2,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Dashboard } from "./Pages/Dashboard";
 import { Login } from "./Pages/Login";
 import ProductList from "./Pages/ProductList";
+import { ProductPage } from "./Pages/ProductPage";
 import { Register } from "./Pages/Register";
 import RegisterProduct from "./Pages/RegisterProduct";
 import ProtectedRoutes from "./utils/ProtectedRouters";
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
           {
             path: "/dashboard/productList",
             element: <ProductList />,
+          },
+          {
+            path: "/dashboard/productList/:id",
+            element: <ProductPage />,
           },
         ],
       },

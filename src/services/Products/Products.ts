@@ -35,3 +35,16 @@ export const getAllProducts = async (): Promise<
     console.error("outro error" + err);
   }
 };
+
+export const getProductById = async (
+  id: number
+): Promise<AxiosResponse<any, any> | undefined> => {
+  try {
+    const response = await api().get<{ data: { products: ProductDto } }>(
+      `api/products/get-one-product/${id}`
+    );
+    return response;
+  } catch (err) {
+    console.error("outro error" + err);
+  }
+};
