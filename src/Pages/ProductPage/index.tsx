@@ -1,4 +1,4 @@
-import { Card, Progress, Text } from "@mantine/core";
+import { Card, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductDto } from "../../Model/ProductDto";
@@ -13,8 +13,9 @@ export function ProductPage() {
     const productSpecific = async () => {
       try {
         const response = await getProductById(Number(id));
+        console.log(response);
         if (response!.status === 200) {
-          setProduct(response?.data.data.products);
+          setProduct(response?.data.data.product);
         }
         return response;
       } catch (err) {
@@ -24,20 +25,28 @@ export function ProductPage() {
     productSpecific();
   }, [id]);
   return (
-    <Card withBorder radius="md" p="xl">
-      <Text fz="xs" tt="uppercase" fw={700}>
-        {product?.name}
-      </Text>
-      <Text fz="lg" fw={500}>
-        Description: {product?.description}
-      </Text>
-      <Text fz="md" fw={400}>
-        Price: ${product?.price}
-      </Text>
-      <Text fz="md" fw={400}>
-        Stock: {product?.stock}
-      </Text>
-      <Progress value={54.31} mt="md" size="lg" radius="xl" />
-    </Card>
+    <div className="flex items-center justify-around">
+      <Card
+        withBorder
+        className="flex border-stone-600 items-start justify-between h-56 bg-stone-700 w-96"
+        radius="md"
+        p="xl"
+      >
+        <div>
+          <Text className="font-bold text-2xl text-white">{product?.name}</Text>
+          <Text className="font-regular text-xl text-stone-400">
+            Description: {product?.description}
+          </Text>
+        </div>
+        <div>
+          <Text className="font-bold text-2xl text-green-600">
+            Price: ${product?.price}
+          </Text>
+          <Text fz="md" fw={400}>
+            Stock: {product?.stock}
+          </Text>
+        </div>
+      </Card>
+    </div>
   );
 }

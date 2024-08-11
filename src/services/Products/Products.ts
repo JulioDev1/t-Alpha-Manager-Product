@@ -41,7 +41,32 @@ export const getProductById = async (
 ): Promise<AxiosResponse<any, any> | undefined> => {
   try {
     const response = await api().get<{ data: { products: ProductDto } }>(
-      `api/products/get-one-product/${id}`
+      `api/products/get-one-product/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    return response;
+  } catch (err) {
+    console.error("outro error" + err);
+  }
+};
+export const updateProductApi = async (
+  product: ProductDto
+): Promise<AxiosResponse<any, any> | undefined> => {
+  const { id, ...productData } = product;
+
+  try {
+    const response = await api().patch(
+      `/api/products/update-product/${id}`,
+      productData,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
     );
     return response;
   } catch (err) {
