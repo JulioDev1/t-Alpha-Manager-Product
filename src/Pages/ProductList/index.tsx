@@ -185,7 +185,7 @@ export default function ProductList() {
           </form>
         )}
       </Modal>
-      <ScrollArea h={300}>
+      <ScrollArea h={`90%`}>
         <Table miw={1000} verticalSpacing={"lg"}>
           <Table.Thead
             className={`sticky top-0 bg-body transition-shadow duration-150 ease-in-out`}

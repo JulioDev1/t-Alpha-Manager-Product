@@ -10,10 +10,9 @@ export const Authentication = async (auth: LoginDto) => {
         "Content-Type": "application/json",
       },
     });
-    console.log(response);
     return response;
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 };
 

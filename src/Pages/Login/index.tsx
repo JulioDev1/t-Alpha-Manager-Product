@@ -42,13 +42,13 @@ export function Login() {
 
   return (
     <form
-      className="flex flex-col gap-2 justify-center max-w-full"
+      className="flex flex-col gap-2 items-center justify-center w-full max-w-md mx-auto"
       onSubmit={handleSubmit}
     >
       <TextInput
-        className="flex flex-col gap-2 w-80"
+        className="flex flex-col gap-2 min-[320px]:w-80 max-[460px]: w-60"
         classNames={{
-          input: "bg-zinc-700 border-1 border-zinc-500 p-5",
+          input: "bg-zinc-700 border-1  sm:w-80 border-zinc-500 p-5",
           label: "text-zinc-100 font-bold",
         }}
         name="taxNumber"
@@ -63,9 +63,9 @@ export function Login() {
         autoComplete="nope"
       />
       <TextInput
-        className="flex flex-col gap-2 w-80"
+        className="flex flex-col gap-2 min-[320px]:w-80   max-[640px]: w-60"
         classNames={{
-          input: "bg-zinc-700 border-1 border-zinc-500 p-5",
+          input: "bg-zinc-700 border-1  sm:w-80 border-zinc-500 p-5",
           label: "text-zinc-100 font-bold",
         }}
         name="password"
@@ -80,13 +80,17 @@ export function Login() {
         radius="md"
         autoComplete="nope"
       />
-      <span className="text-zinc-100 font-light">
+      <span className="flex justify-start min-[320px]:w-80   max-[640px]: w-60 text-zinc-100 font-light">
         Don't have account ?{" "}
         <a className="text-blue-600 font-bold" href={`/register`}>
           Register
         </a>
       </span>
-      <Button type="submit" className="font-bold" color="indigo">
+      <Button
+        type="submit"
+        className="font-bold min-[320px]:w-80   max-[640px]: w-60"
+        color="indigo"
+      >
         Login
       </Button>
     </form>

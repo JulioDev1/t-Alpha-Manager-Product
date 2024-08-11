@@ -23,9 +23,7 @@ export function Register() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(value);
     const response = await RegisterForm(value);
-    console.log(response);
     return response;
   };
   return (
@@ -34,7 +32,7 @@ export function Register() {
       onSubmit={handleSubmit}
     >
       <TextInput
-        className="flex flex-col gap-2 w-80"
+        className="flex flex-col gap-2 min-[320px]:w-80   max-[640px]: w-60"
         classNames={{
           input: "bg-zinc-700 border-1 border-zinc-500 p-5",
           label: "text-zinc-100 font-bold",
@@ -51,7 +49,7 @@ export function Register() {
         autoComplete="nope"
       />
       <TextInput
-        className="flex flex-col gap-2 w-80"
+        className="flex flex-col gap-2  min-[320px]:w-80   max-[640px]: w-60"
         classNames={{
           input: "bg-zinc-700 border-1 border-zinc-500 p-5",
           label: "text-zinc-100 font-bold",
@@ -68,7 +66,7 @@ export function Register() {
         autoComplete="nope"
       />
       <TextInput
-        className="flex flex-col gap-2 w-80"
+        className="flex flex-col gap-2  min-[320px]:w-80   max-[640px]: w-60"
         classNames={{
           input: "bg-zinc-700 border-1 border-zinc-500 p-5",
           label: "text-zinc-100 font-medium",
@@ -85,7 +83,7 @@ export function Register() {
         autoComplete="nope"
       />
       <TextInput
-        className="flex flex-col gap-2 w-80"
+        className="flex flex-col gap-2  min-[320px]:w-80   max-[640px]: w-60"
         classNames={{
           input: "bg-zinc-700 border-1 border-zinc-500 p-5",
           label: "text-zinc-100 font-medium",
@@ -102,7 +100,7 @@ export function Register() {
         autoComplete="nope"
       />
       <TextInput
-        className="flex flex-col gap-2 w-80"
+        className="flex flex-col gap-2  min-[320px]:w-80   max-[640px]: w-60"
         classNames={{
           input: "bg-zinc-700 border-1 border-zinc-500 p-5",
           label: "text-zinc-100 font-medium",
@@ -120,10 +118,14 @@ export function Register() {
         autoComplete="nope"
       />
 
-      <Button type="submit" className="font-bold" color="indigo">
-        Login
+      <Button
+        type="submit"
+        className="font-bold  min-[320px]:w-80   max-[640px]: w-60"
+        color="indigo"
+      >
+        Register
       </Button>
-      <span className="text-zinc-100 font-light">
+      <span className="text-zinc-100 font-light  min-[320px]:w-80   max-[640px]: w-60">
         You already have account?{" "}
         <a className="text-blue-600 font-bold" href={`/`}>
           Login

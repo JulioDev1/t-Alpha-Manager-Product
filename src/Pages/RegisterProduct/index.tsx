@@ -45,7 +45,7 @@ export default function RegisterProduct() {
     }
   };
   return (
-    <div className="flex flex-col justify-center gap-4">
+    <>
       {input && (
         <Notification
           onClose={() => setReponse(null)}
@@ -55,14 +55,14 @@ export default function RegisterProduct() {
         />
       )}
       <form
-        className="flex flex-col gap-2 justify-center max-w-80"
+        className="flex flex-col max-w-96 w-full items-center gap-2 p-5 justify-center"
         onSubmit={handleSubmit}
       >
         <h1 className="text-3xl font-bold text-white"> Create Product</h1>
         <TextInput
-          className="flex flex-col gap-2 w-80"
+          className="flex flex-col gap-2 w-full"
           classNames={{
-            input: "bg-zinc-700 border-1 border-zinc-500 p-5",
+            input: "bg-zinc-700 border-1 border-zinc-500  w-full",
             label: "text-zinc-100 font-bold",
           }}
           value={value.name}
@@ -77,9 +77,9 @@ export default function RegisterProduct() {
           autoComplete="nope"
         />
         <TextInput
-          className="flex flex-col gap-2 w-80"
+          className="flex flex-col gap-2 w-full"
           classNames={{
-            input: "bg-zinc-700 border-1 border-zinc-500 p-5",
+            input: "bg-zinc-700 border-1 border-zinc-500  w-full",
             label: "text-zinc-100 font-bold",
           }}
           value={value.description}
@@ -96,9 +96,9 @@ export default function RegisterProduct() {
         />
 
         <TextInput
-          className="flex flex-col gap-2 w-80"
+          className="flex flex-col gap-2 w-full"
           classNames={{
-            input: "bg-zinc-700 border-1 border-zinc-500 p-5",
+            input: "bg-zinc-700 border-1  border-zinc-500  w-full",
             label: "text-zinc-100 font-bold",
           }}
           value={value.price}
@@ -115,9 +115,9 @@ export default function RegisterProduct() {
         />
 
         <TextInput
-          className="flex flex-col gap-2 w-80"
+          className="flex flex-col gap-2 w-full"
           classNames={{
-            input: "bg-zinc-700 border-1 border-zinc-500 p-5",
+            input: "bg-zinc-700 border-1  border-zinc-500  w-full",
             label: "text-zinc-100 font-bold",
           }}
           value={value.stock}
@@ -133,10 +133,10 @@ export default function RegisterProduct() {
           autoComplete="nope"
         />
 
-        <Button type="submit" className="font-bold w-80 h-12" color="indigo">
+        <Button type="submit" className="font-bold  w-full" color="indigo">
           Create Product
         </Button>
       </form>{" "}
-    </div>
+    </>
   );
 }
