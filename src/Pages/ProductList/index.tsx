@@ -49,7 +49,6 @@ export default function ProductList() {
   const updateProduct = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      console.log(product, product.id);
       const response = await updateProductApi(product);
       close();
       getAll();

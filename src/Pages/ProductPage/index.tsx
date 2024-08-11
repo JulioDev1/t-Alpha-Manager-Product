@@ -13,7 +13,6 @@ export function ProductPage() {
     const productSpecific = async () => {
       try {
         const response = await getProductById(Number(id));
-        console.log(response);
         if (response!.status === 200) {
           setProduct(response?.data.data.product);
         }
@@ -25,15 +24,17 @@ export function ProductPage() {
     productSpecific();
   }, [id]);
   return (
-    <div className="flex items-center justify-around">
+    <div className="flex items-center w-full  justify-around">
       <Card
         withBorder
-        className="flex border-stone-600 items-start justify-between h-56 bg-stone-700 w-96"
+        className="flex  sm:min-w-[476px] border-stone-600 items-start justify-between h-56 bg-stone-700"
         radius="md"
         p="xl"
       >
         <div>
-          <Text className="font-bold text-2xl text-white">{product?.name}</Text>
+          <Text className="font-bold md:text-lg text-[32px] lg:text-2xl text-white">
+            {product?.name}
+          </Text>
           <Text className="font-regular text-xl text-stone-400">
             Description: {product?.description}
           </Text>
