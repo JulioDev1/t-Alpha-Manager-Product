@@ -16,5 +16,5 @@ o Desafio Consiste em consumir uma api que Jwt que cadastra e faz crud com os pr
 - **Mantine**: Biblioteca de componentes para React.
 - **Tailwind CSS**: Framework CSS para estilização rápida e responsiva.
 - **Redux-tool-kit**: Biblioteca para Compartilhamento de token globalmente.
-- **Typescript: Para adicionar tipagem ao codigo
+- **Typescript**: Para adicionar tipagem ao codigo
 
