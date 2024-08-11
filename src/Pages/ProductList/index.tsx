@@ -5,6 +5,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ProductDto } from "../../Model/ProductDto";
 import {
+  deleteProduct,
   getAllProducts,
   updateProductApi,
 } from "../../services/Products/Products";
@@ -56,6 +57,16 @@ export default function ProductList() {
     }
   };
 
+  const handleDelete = async (id: number) => {
+    try {
+      const response = await deleteProduct(id);
+      console.log(response);
+      return response;
+    } catch (e) {
+      console.error("Error deleting product:", e);
+    }
+  };
+
   useEffect(() => {
     getAll();
   }, []);
@@ -70,7 +81,12 @@ export default function ProductList() {
           <IconPencil className="cursor-pointer" size={20} color="#1289f8" />
         </div>
         <div className="flex rounded-md items-center justify-center h-8 w-8 bg-red-600/20">
-          <IconTrash className="cursor-pointer" size={20} color="#f81212" />
+          <IconTrash
+            onClick={() => handleDelete(row.id ?? 0)}
+            className="cursor-pointer"
+            size={20}
+            color="#f81212"
+          />
         </div>
         <div className="flex rounded-md items-center justify-center h-8 w-8 bg-slate-600/20">
           <IconEye
@@ -89,7 +105,6 @@ export default function ProductList() {
       <Table.Td className="text-stone-50 font-medium">{row.stock}</Table.Td>
     </Table.Tr>
   ));
-
   return (
     <div className="flex justify-center items-center relative overflow-y-auto">
       <Modal

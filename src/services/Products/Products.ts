@@ -73,3 +73,17 @@ export const updateProductApi = async (
     console.error("outro error" + err);
   }
 };
+export const deleteProduct = async (
+  id: number
+): Promise<AxiosResponse<any, any> | undefined> => {
+  try {
+    const response = await api().delete(`/api/products/delete-product/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    return response;
+  } catch (err) {
+    console.error("outro error" + err);
+  }
+};
