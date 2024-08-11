@@ -51,6 +51,8 @@ export default function ProductList() {
     try {
       console.log(product, product.id);
       const response = await updateProductApi(product);
+      close();
+      getAll();
       return response;
     } catch (error) {
       console.error("Erro ao atualizar produto:", error);
@@ -60,7 +62,7 @@ export default function ProductList() {
   const handleDelete = async (id: number) => {
     try {
       const response = await deleteProduct(id);
-      console.log(response);
+      setItems(items.filter((item) => item.id !== id));
       return response;
     } catch (e) {
       console.error("Error deleting product:", e);
