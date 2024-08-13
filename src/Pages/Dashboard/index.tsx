@@ -4,18 +4,27 @@ import {
   IconBuildingStore,
   IconLogout,
 } from "@tabler/icons-react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { setToken } from "../../store/authSlice";
 export function Dashboard({ children }: any) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   const logout = () => {
     localStorage.removeItem("token");
     dispatch(setToken(null));
     navigate("/");
   };
+
   return (
     <>
       <div className="flex w-full h-full ">
@@ -50,7 +59,7 @@ export function Dashboard({ children }: any) {
                 </div>
 
                 <span className="text-base hidden sm:block text-zinc-50">
-                  Create Product
+                  All Product
                 </span>
               </Link>
             </div>
